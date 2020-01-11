@@ -1,5 +1,5 @@
+The main goal of the plugin is integration PL/SQL Developer with Git
 ### Features
-#####The main goal of plugin is integration PL/SQL Developer with Git
 
 - :heavy_check_mark: Works with PL/SQL Developer API
 - :heavy_check_mark: Saves (or loads) the DB object text to the local git-repository
