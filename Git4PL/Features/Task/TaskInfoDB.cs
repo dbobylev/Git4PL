@@ -17,6 +17,7 @@ namespace Git4PL.Features.Task
 
         public TaskInfoDB(string taskIsn)
         {
+            ID = taskIsn;
             string query = string.Format(TaskRequestQuery, taskIsn);
             if (PLSqlDeveloper.IDECallBacks.Callbacks.SQLQueryExecute(query, out List<TaskInfo> task, out string ErrorMsg))
             {
@@ -43,7 +44,6 @@ namespace Git4PL.Features.Task
 
         private void SetTaskInfo(TaskInfo t)
         {
-            ID = t.ID;
             Title = t.Title;
             Description = t.Description;
             AssignedTo = t.AssignedTo;
