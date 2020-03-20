@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using Git4PL.PLSqlDeveloper.IDECallBacks;
 using Git4PL.Features.GitDiff;
 
@@ -19,6 +20,7 @@ namespace Git4PL.Forms
 
             FillStatusBar();
             FillRtb();
+            SetColorToGoToLineButton();
 
             // Без этого окно GitDiff спрячется на заднем фоне PL/SQL Developer-а
             this.Activate();
@@ -131,6 +133,34 @@ namespace Git4PL.Forms
         private void TsslBranchValue_Click(object sender, EventArgs e)
         {
             PluginCommands.ShowTaskInfoWindow(tsslBranchValue.Text);
+        }
+
+        private void RtbMain_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.GoToLine)
+            {
+                int BeginPos = rtbMain.GetFirstCharIndexOfCurrentLine();
+ 
+                Regex regex = new Regex(@"^\d*\s+(?<val>\d+)");
+                Match match = regex.Match(rtbMain.Text, BeginPos, 16);
+                if (match.Groups["val"].Success)
+                {
+                    PluginCommands.GoToLine(int.Parse(match.Groups["val"].Value));
+                    Close();
+                }
+            }
+        }
+
+        private void ButtonGoToLine_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.GoToLine = !Properties.Settings.Default.GoToLine;
+            Properties.Settings.Default.Save();
+            SetColorToGoToLineButton();
+        }
+
+        private void SetColorToGoToLineButton()
+        {
+            buttonGoToLine.BackColor = Properties.Settings.Default.GoToLine ? Color.YellowGreen : Color.LightGray;
         }
     }
 }

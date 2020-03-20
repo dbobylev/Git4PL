@@ -89,5 +89,10 @@ namespace Git4PL
         {
             MessageBox.Show(message, "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public static void GoToLine(int LineNum)
+        {
+            Run(new CommandGoToLine(LineNum));
+        }
     }
 }

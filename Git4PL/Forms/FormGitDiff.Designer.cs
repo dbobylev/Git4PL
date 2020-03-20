@@ -41,6 +41,7 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.flPanelButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonHelp = new System.Windows.Forms.Button();
+            this.buttonGoToLine = new System.Windows.Forms.Button();
             this.buttonCheckIn = new System.Windows.Forms.Button();
             this.buttonCheckOut = new System.Windows.Forms.Button();
             this.rtbMain = new System.Windows.Forms.RichTextBox();
@@ -152,19 +153,20 @@
             this.flPanelButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flPanelButtons.BackColor = System.Drawing.Color.White;
             this.flPanelButtons.Controls.Add(this.buttonHelp);
+            this.flPanelButtons.Controls.Add(this.buttonGoToLine);
             this.flPanelButtons.Controls.Add(this.buttonCheckIn);
             this.flPanelButtons.Controls.Add(this.buttonCheckOut);
             this.flPanelButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flPanelButtons.Location = new System.Drawing.Point(684, 707);
+            this.flPanelButtons.Location = new System.Drawing.Point(616, 707);
             this.flPanelButtons.Name = "flPanelButtons";
-            this.flPanelButtons.Size = new System.Drawing.Size(277, 29);
+            this.flPanelButtons.Size = new System.Drawing.Size(345, 29);
             this.flPanelButtons.TabIndex = 1;
             // 
             // buttonHelp
             // 
             this.buttonHelp.BackColor = System.Drawing.Color.Cornsilk;
             this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHelp.Location = new System.Drawing.Point(199, 3);
+            this.buttonHelp.Location = new System.Drawing.Point(267, 3);
             this.buttonHelp.Name = "buttonHelp";
             this.buttonHelp.Size = new System.Drawing.Size(75, 23);
             this.buttonHelp.TabIndex = 2;
@@ -172,12 +174,25 @@
             this.buttonHelp.UseVisualStyleBackColor = false;
             this.buttonHelp.Click += new System.EventHandler(this.ButtonHelp_Click);
             // 
+            // buttonGoToLine
+            // 
+            this.buttonGoToLine.BackColor = System.Drawing.Color.YellowGreen;
+            this.buttonGoToLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGoToLine.Location = new System.Drawing.Point(179, 3);
+            this.buttonGoToLine.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.buttonGoToLine.Name = "buttonGoToLine";
+            this.buttonGoToLine.Size = new System.Drawing.Size(75, 23);
+            this.buttonGoToLine.TabIndex = 2;
+            this.buttonGoToLine.Text = "GoToLine";
+            this.buttonGoToLine.UseVisualStyleBackColor = false;
+            this.buttonGoToLine.Click += new System.EventHandler(this.ButtonGoToLine_Click);
+            // 
             // buttonCheckIn
             // 
             this.buttonCheckIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.buttonCheckIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCheckIn.Location = new System.Drawing.Point(101, 3);
-            this.buttonCheckIn.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.buttonCheckIn.Location = new System.Drawing.Point(91, 3);
+            this.buttonCheckIn.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.buttonCheckIn.Name = "buttonCheckIn";
             this.buttonCheckIn.Size = new System.Drawing.Size(75, 23);
             this.buttonCheckIn.TabIndex = 1;
@@ -190,7 +205,7 @@
             this.buttonCheckOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.buttonCheckOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCheckOut.Location = new System.Drawing.Point(3, 3);
-            this.buttonCheckOut.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.buttonCheckOut.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.buttonCheckOut.Name = "buttonCheckOut";
             this.buttonCheckOut.Size = new System.Drawing.Size(75, 23);
             this.buttonCheckOut.TabIndex = 0;
@@ -200,6 +215,7 @@
             // 
             // rtbMain
             // 
+            this.rtbMain.AutoWordSelection = true;
             this.rtbMain.BackColor = System.Drawing.Color.White;
             this.rtbMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbMain.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -211,6 +227,7 @@
             this.rtbMain.Size = new System.Drawing.Size(984, 739);
             this.rtbMain.TabIndex = 0;
             this.rtbMain.Text = "";
+            this.rtbMain.Click += new System.EventHandler(this.RtbMain_Click);
             // 
             // FormGitDiff
             // 
@@ -251,5 +268,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslServerValue;
         private System.Windows.Forms.ToolStripStatusLabel tsslObjectValue;
         private System.Windows.Forms.ToolStripStatusLabel tsslPathValue;
+        private System.Windows.Forms.Button buttonGoToLine;
     }
 }

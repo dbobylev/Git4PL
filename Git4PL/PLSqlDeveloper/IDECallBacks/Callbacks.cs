@@ -63,16 +63,13 @@ namespace Git4PL.PLSqlDeveloper.IDECallBacks
                 GetDelegate<IDE_SetReadOnly>()?.Invoke(false);
             }
 
-            int CursorXPos = GetDelegate<IDE_GetCursorX>()?.Invoke() ?? 1;
             int CursorYPos = GetDelegate<IDE_GetCursorY>()?.Invoke() ?? 1;
 
             // Устанавливаем текст
             bool ans = GetDelegate<IDE_SetText>()?.Invoke(Text) ?? false;
             logger.Debug("Текст {0}установлен", ans ? "" : "не ");
 
-            // Двойной вызов, что бы курсор откатился ближе к центру экрана (на 20 строк от низа)
-            GetDelegate<IDE_SetCursor>()?.Invoke(CursorXPos, CursorYPos + 20);
-            GetDelegate<IDE_SetCursor>()?.Invoke(CursorXPos, CursorYPos);
+            GoToLine(CursorYPos, 1);
 
             return ans;
         }
@@ -211,6 +208,30 @@ namespace Git4PL.PLSqlDeveloper.IDECallBacks
         public static int GetCurrentLine()
         {
             return GetDelegate<IDE_GetCursorY>()?.Invoke() ?? 1;
+        }
+
+        /// <summary>
+        /// Перейти к строке
+        /// </summary>
+        /// <param name="LineNum"></param>
+        /// <param name="posX"></param>
+        public static void GoToLine(int LineNum, int BasePos = -1)
+        {
+            logger.Debug("GoToLine begin: LineNum={0}, BasePos={1}", LineNum, BasePos);
+            /* При переходе к строке курсор занимает крайнюю к экрану строку!
+             * Например: Если мы переходим к строке которая находится ниже нас, 
+             * После перехода экран будет на нужной строке, но она будет в самом конце экрана а не по середине
+             * сответственно, обратная ситуация при переходе наверх.
+             * Пробуем это обойти двойным вызовом перехода с запасом +- 20 строк, (в зависимости в какую сторону идём вверх или вниз)
+             * Что бы оказаться посередине экрана!
+             */
+            if (BasePos == -1)
+                BasePos = GetDelegate<IDE_GetCursorY>()?.Invoke() ?? 1;
+            
+            int FakeLines = Math.Sign(LineNum - BasePos + 0.1d) * 20;
+            GetDelegate<IDE_SetCursor>()?.Invoke(1, LineNum + FakeLines);
+            
+            GetDelegate<IDE_SetCursor>()?.Invoke(1, LineNum);
         }
     }
 }

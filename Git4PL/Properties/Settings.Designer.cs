@@ -262,5 +262,17 @@ namespace Git4PL.Properties {
                 this["BranchSelectedIndex2"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool GoToLine {
+            get {
+                return ((bool)(this["GoToLine"]));
+            }
+            set {
+                this["GoToLine"] = value;
+            }
+        }
     }
 }

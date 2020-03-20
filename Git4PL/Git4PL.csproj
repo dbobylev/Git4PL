@@ -130,6 +130,7 @@
     <Compile Include="CMD\CmdReaders\CmdReadString.cs" />
     <Compile Include="PluginCommandsList\CommandCheckIn.cs" />
     <Compile Include="PluginCommandsList\CommandCheckOut.cs" />
+    <Compile Include="PluginCommandsList\CommandGoToLine.cs" />
     <Compile Include="PluginCommandsList\CommandShowCompareBranches.cs" />
     <Compile Include="PluginCommandsList\CommandShowGitBlame.cs" />
     <Compile Include="PluginCommandsList\CommandShowCommit.cs" />
