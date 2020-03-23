@@ -62,7 +62,7 @@ namespace Git4PL.Forms
 
         private void Button_Plus10_Click(object sender, EventArgs e)
         {
-            textBoxBegin.Text = (int.Parse(textBoxBegin.Text) - 10).ToString();
+            textBoxBegin.Text = Math.Max(1, int.Parse(textBoxBegin.Text) - 10).ToString();
             textBoxEnd.Text = (int.Parse(textBoxEnd.Text) + 10).ToString();
         }
     }
